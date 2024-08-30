@@ -2,55 +2,35 @@
 <html lang="tr">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="./css/style.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-    <title>Yapılacaklar Listesi</title>
+    <link rel="icon"  type="image/svg+xml" href="./assets/list-check-solid.svg">
+    <title>Courses to Learn</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css"/>
   </head>
   <body>
-      <div class="tst">
-        <div id="successToast" class="toast hide success" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-          <div class="toast-header toast-header-style">
-            <strong class="mr-auto" style="background-color: inherit;">Course added.</strong>
-            <button type="button" class="close" style="margin-top: 10px; margin-right: 5px;" data-dismiss="toast" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="tst">
-        <div id="errorToast" class="toast hide error" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-          <div class="toast-header toast-header-style">
-            <strong class="mr-auto" style="background-color: inherit;">Please enter a course.</strong>
-            <button type="button" class="close" style="margin-top: 10px; margin-right: 5px;" data-dismiss="toast" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        </div>
-      </div>
 
     <div class="container">
       <div class="header">
-        <img src="assets\fcc_primary_large.svg" class="mt-2" alt="fCC" />
-        <h2 class="my-3">JavaScript Courses</h2>
-        <input type="text" id="course-input" placeholder="Add course" style="color: #d0d0d5;"/>
+        <img src="./assets/fcc_primary_large.svg" class="mt-2" alt="freeCcodeCamp" />
+        <h2 class="my-3">Courses to Learn</h2>
+        <input type="text" id="course-input" placeholder="Enter a course name" style="color: #d0d0d5;"/>
         <span class="button" onclick="addCourse()">Add</span>
       </div>
-
       <ul id="courses-list">
 <!--    <li>
           <span class="no-checkmark"></span>
-          Cem
+          course
           <span class="close remove">×</span>
-        </li>   -->
+        </li>    -->
       </ul>
-
-      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-      </script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
-      </script>
-      <script src="./js/front-end-to-do-list.js"></script>
     </div>
+
+    <div class="toast-element"></div><div class="toast-element"></div><div class="toast-element"></div><div class="toast-element"></div><div class="toast-element"></div>
+
+    <script src="./javascript/jquery-3.5.1.slim.min.js"></script>
+    <script src="./javascript/bootstrap.bundle.min.js"></script>
+    <script src="./javascript/to-do-list.js"></script>
+
   </body>
 </html>

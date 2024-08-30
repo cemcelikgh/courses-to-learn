@@ -6,17 +6,19 @@ const coursesList = document.querySelector("#courses-list");
 //  Event Listeners
 
 document.addEventListener("DOMContentLoaded", loadAllCoursesToUserInterface);
+document.addEventListener("DOMContentLoaded", loadToastsToBody);
 
 //  Functions
 
 function addCourse() {
   let newCourse = courseInput.value.trim();
   if(newCourse === "") {
-    $('#errorToast').toast('show')
+    $('#error-toast').toast('show');
   } else {
     addCourseToUserInterface(newCourse);
     addCourseToLocalStorage(newCourse);
-    $('#successToast').toast('show')
+    courseInput.value = '';
+    $('#added-toast').toast('show');
   }
 }
 
@@ -64,10 +66,12 @@ function checked(check) {
         course[1] = "checkmark";
         check.target.firstElementChild.className = "checkmark";
         courses.push(course);
+        $('#completed-toast').toast('show');
         } else {
           course[1] = "no-checkmark";
           check.target.firstElementChild.className = "no-checkmark";
           courses.push(course);
+        $('#not-com-toast').toast('show');
         }
     }
   });
@@ -94,4 +98,23 @@ function deleteCourse(x) {
     }
   });
   localStorage.setItem("courses", JSON.stringify(coursesFLS));
+  $('#removed-toast').toast('show');
+}
+
+function loadToastsToBody() {
+  const toastNames = ['added', 'error', 'removed', 'completed', 'not-com'];
+  const toastMessages = ['Course added.', 'Please enter a course.',
+    'Course removed.', 'Course is completed.', "The course isn't completed yet."];
+  const toastElementList = document.querySelectorAll('.toast-element');
+  toastElementList.forEach((toastElement, index) => {
+    toastElement.innerHTML = (`<div id="${toastNames[index]}-toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+        <div class="toast-header toast-header-style">
+          <strong class="mr-auto" style="background-color: inherit;">${toastMessages[index]}</strong>
+          <button type="button" class="close" style="margin-top: 10px; margin-right: 5px;" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>`
+    );
+  });
 }

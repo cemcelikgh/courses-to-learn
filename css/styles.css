@@ -7,7 +7,7 @@ body {
   background-color: #1b1b32!important;
 }
 
-.tst {
+.toast-element {
   position: fixed;
   top: 10px;
   right: 10px;
@@ -21,6 +21,10 @@ body {
   border-radius: 0!important;
   color: rgb(245, 246, 247)!important;
   text-decoration: none!important;
+}
+
+#completed-toast .toast-header-style {
+  background-color: #00471b!important;
 }
 
 ul {
@@ -120,12 +124,12 @@ input {
 
 .no-checkmark {
   position: absolute;
-  top: 14px;
+  top: 12px;
   left: 9px;
   height: 23px;
   width: 23px;
   background-color: inherit;
-  background-image: url("../assets/fCC-blue_glyph.png");
+  background-image: url("../assets/misuse-2_glyph.png");
   background-size: 23px 23px;
   background-repeat: no-repeat;
   opacity: 0;
@@ -133,12 +137,12 @@ input {
 
 .checkmark {
   position: absolute;
-  top: 14px;
+  top: 12px;
   left: 9px;
   height: 23px;
   width: 23px;
   background-color: inherit;
-  background-image: url("../assets/fCC-blue_glyph.png");
+  background-image: url("../assets/misuse-2_glyph.png");
   background-size: 23px 23px;
   background-repeat: no-repeat;
   opacity: 1;
