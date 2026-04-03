@@ -7,6 +7,7 @@ const coursesList = document.querySelector("#courses-list");
 
 document.addEventListener("DOMContentLoaded", loadAllCoursesToUserInterface);
 document.addEventListener("DOMContentLoaded", loadToastsToBody);
+courseInput.addEventListener("keyup", submit);
 
 //  Functions
 
@@ -22,39 +23,7 @@ function addCourse() {
   }
 }
 
-function addCourseToUserInterface(course, courseSituation = "no-checkmark") {
-  const listCourse = document.createElement("li");
-  const noCheckmark = document.createElement("span");
-  noCheckmark.className = courseSituation;
-  listCourse.appendChild(noCheckmark);
-  listCourse.appendChild(document.createTextNode(course));
-  const removeCourse = document.createElement("span");
-  removeCourse.className = "close remove";
-  removeCourse.innerHTML = "&times;";
-  listCourse.appendChild(removeCourse);
-  coursesList.appendChild(listCourse);
-  listCourse.addEventListener("click", checked);
-  removeCourse.addEventListener("click", deleteCourse);
-}
-
-function getCoursesFromLocalStorage() {
-  let coursesFLC;
-  if (localStorage.getItem("courses") === null) {
-    coursesFLC = [];
-  } else {
-    coursesFLC = JSON.parse(localStorage.getItem("courses"));
-  }
-  return coursesFLC;
-}
-
-function loadAllCoursesToUserInterface() {
-  let courses = getCoursesFromLocalStorage();
-  courses.forEach(course => {
-    addCourseToUserInterface(course[0], course[1]);
-  });
-}
-
-function checked(check) {
+function checkCourse(check) {
   let coursesFLS = getCoursesFromLocalStorage();
   let courses = [];
   let text = check.target.textContent;
@@ -78,13 +47,6 @@ function checked(check) {
   localStorage.setItem("courses", JSON.stringify(courses));
 }
 
-function addCourseToLocalStorage(course, courseSituation = "no-checkmark") {
-  let coursesFLS = getCoursesFromLocalStorage();
-  let courCSit = [course,courseSituation];
-  coursesFLS.push(courCSit);
-  localStorage.setItem("courses", JSON.stringify(coursesFLS));
-}
-
 function deleteCourse(x) {
   x.target.parentElement.remove();
   let coursesFLS = getCoursesFromLocalStorage();
@@ -99,6 +61,49 @@ function deleteCourse(x) {
   });
   localStorage.setItem("courses", JSON.stringify(coursesFLS));
   $('#removed-toast').toast('show');
+}
+
+function submit(event) {
+  if (event.key === "Enter") { addCourse() };
+}
+
+function addCourseToUserInterface(course, courseSituation = "no-checkmark") {
+  const listCourse = document.createElement("li");
+  const noCheckmark = document.createElement("span");
+  noCheckmark.className = courseSituation;
+  listCourse.appendChild(noCheckmark);
+  listCourse.appendChild(document.createTextNode(course));
+  const removeCourse = document.createElement("span");
+  removeCourse.className = "close remove";
+  removeCourse.innerHTML = "&times;";
+  listCourse.appendChild(removeCourse);
+  coursesList.appendChild(listCourse);
+  listCourse.addEventListener("click", checkCourse);
+  removeCourse.addEventListener("click", deleteCourse);
+}
+
+function getCoursesFromLocalStorage() {
+  let coursesFLC;
+  if (localStorage.getItem("courses") === null) {
+    coursesFLC = [];
+  } else {
+    coursesFLC = JSON.parse(localStorage.getItem("courses"));
+  }
+  return coursesFLC;
+}
+
+function loadAllCoursesToUserInterface() {
+  let courses = getCoursesFromLocalStorage();
+  courses.forEach(course => {
+    addCourseToUserInterface(course[0], course[1]);
+  });
+}
+
+function addCourseToLocalStorage(course, courseSituation = "no-checkmark") {
+  let coursesFLS = getCoursesFromLocalStorage();
+  let courCSit = [course,courseSituation];
+  coursesFLS.push(courCSit);
+  localStorage.setItem("courses", JSON.stringify(coursesFLS));
 }
 
 function loadToastsToBody() {
